@@ -15,7 +15,8 @@ class SignInScreen extends StatelessWidget {
 
   AppBar buildAppBar() {
     return AppBar(
-      title: Text("SIGN IN")
+      centerTitle: true,
+      title: Text("SIGN IN"),
     );
   }
 }
