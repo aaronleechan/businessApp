@@ -2,9 +2,11 @@ import 'package:business_application/components/custom_surfix_icon.dart';
 import 'package:business_application/components/default_button.dart';
 import 'package:business_application/components/form_error.dart';
 import 'package:business_application/constants.dart';
+import 'package:business_application/screens/home/home_screen.dart';
 import 'package:business_application/size_config.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class SignUpForm extends StatefulWidget {
   @override
@@ -19,6 +21,7 @@ class _SignUpFormState extends State<SignUpForm> {
   String _verifyPassword;
   final List<String> _errors = [];
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final _auth = FirebaseAuth.instance;
 
   Widget build(BuildContext context) {
     return Form(
@@ -37,7 +40,7 @@ class _SignUpFormState extends State<SignUpForm> {
           FormError(errors: _errors),
           DefaultButton(
               text: "Continue",
-              press: () {
+              press: () async {
                 if (_formKey.currentState.validate()) {
                   _formKey.currentState.save();
                 }else{
@@ -52,10 +55,20 @@ class _SignUpFormState extends State<SignUpForm> {
                 }
                 if(_errors.isEmpty){
                   //Submit the SIGN UP Form ********************************************
-                  print({"username": _username});
-                  print({"email ": _email});
-                  print({"password ": _password});
-                  print({" verify password": _verifyPassword});
+                  try{
+                    final newUser = await _auth.createUserWithEmailAndPassword(email: _email, password: _password);
+                    print(newUser);
+                    if(newUser != null){
+                      Navigator.pushNamed(context, HomeScreen.routeName);
+                    }else{
+                      print(" Fail to Log In ");
+                    }
+                  }catch(e){
+                    print(e);
+                    print("........................fail.................................");
+                  }
+
+
                 }
               }),
         ],

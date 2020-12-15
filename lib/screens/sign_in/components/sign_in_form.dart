@@ -14,7 +14,6 @@ class SignInForm extends StatefulWidget {
 }
 
 class _SignInFormState extends State<SignInForm> {
-
   String email;
   String password;
   bool remember = false;
@@ -52,7 +51,7 @@ class _SignInFormState extends State<SignInForm> {
           SizedBox(height: getProportionateScreenHeight(20)),
           DefaultButton(
               text: "Continue",
-              press: () {
+              press: () async {
                 if (_formKey.currentState.validate()) {
                   _formKey.currentState.save();
                 }
