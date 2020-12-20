@@ -5,6 +5,7 @@ import 'package:business_application/constants.dart';
 import 'package:business_application/screens/forget_password/forget_password_screen.dart';
 import 'package:business_application/screens/home/home_screen.dart';
 import 'package:business_application/size_config.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 
@@ -19,6 +20,7 @@ class _SignInFormState extends State<SignInForm> {
   bool remember = false;
   final List<String> errors = [];
   final _formKey = GlobalKey<FormState>();
+  final _auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -56,11 +58,17 @@ class _SignInFormState extends State<SignInForm> {
                   _formKey.currentState.save();
                 }
                 if(errors.isEmpty){
-                  //Submit the SIGN IN Form ********************************************
-                  print({"email ": email});
-                  print({"password ": password});
+                  try{
+                    final user = await _auth..signInWithEmailAndPassword(email: email, password: password);
+                    if(user != null){
+                      Navigator.pushNamed(context, HomeScreen.routeName);
+                    }else{
+                      print("Fail to Log IN");
+                    }
+                  }catch(e){
+                    print({"Error to Log IN ": e });
+                  }
                   Navigator.pushNamed(context, HomeScreen.routeName);
-                  print("*****************************************************");
                 }
               }),
         ],

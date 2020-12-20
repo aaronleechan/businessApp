@@ -54,7 +54,6 @@ class _SignUpFormState extends State<SignUpForm> {
                   });
                 }
                 if(_errors.isEmpty){
-                  //Submit the SIGN UP Form ********************************************
                   try{
                     final newUser = await _auth.createUserWithEmailAndPassword(email: _email, password: _password);
                     print(newUser);
@@ -65,7 +64,6 @@ class _SignUpFormState extends State<SignUpForm> {
                     }
                   }catch(e){
                     print(e);
-                    print("........................fail.................................");
                   }
 
 
