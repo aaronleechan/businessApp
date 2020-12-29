@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "376487370634-0a52no0v3aujlhn4rbg8fqbhcgka50oh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.aarlic.business_application",
+            "certificate_hash": "397f82b3e1a4f5571ff28de1f004d1df519d7a96"
+          }
+        },
+        {
           "client_id": "376487370634-okogi784dt1qtj7rnvscn0v0j797li8a.apps.googleusercontent.com",
           "client_type": 3
         }

@@ -1,3 +1,4 @@
+import 'package:business_application/blocs/auth_bloc.dart';
 import 'package:business_application/components/no_account_text.dart';
 import 'package:business_application/components/socal_card.dart';
 import 'package:business_application/constants.dart';
@@ -6,10 +7,13 @@ import 'package:business_application/size_config.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 
 class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final authBloc = Provider.of<AuthBloc>(context);
+    print({"auth Bloc ": authBloc});
     return SafeArea(
       child: SizedBox(
         width: double.infinity,
@@ -39,11 +43,17 @@ class Body extends StatelessWidget {
                   children: [
                     SocalCard(
                         icon: "assets/icons/facebook-2.svg",
-                        press:(){}
+                        press:(){
+
+                        }
                     ),
                     SocalCard(
                         icon: "assets/icons/google-icon.svg",
-                        press:(){}
+                        press: () async {
+                          final result = await authBloc.loginGoogle();
+                          print({" result ": result });
+                          print("CLICK GOOGLE SIGN IN");
+                        }
                     ),
                     SocalCard(
                         icon: "assets/icons/twitter.svg",

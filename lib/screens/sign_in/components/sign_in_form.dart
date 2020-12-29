@@ -1,3 +1,4 @@
+import 'package:business_application/blocs/auth_bloc.dart';
 import 'package:business_application/components/custom_surfix_icon.dart';
 import 'package:business_application/components/default_button.dart';
 import 'package:business_application/components/form_error.dart';
@@ -7,6 +8,7 @@ import 'package:business_application/screens/home/home_screen.dart';
 import 'package:business_application/size_config.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 
 class SignInForm extends StatefulWidget {
@@ -21,6 +23,7 @@ class _SignInFormState extends State<SignInForm> {
   final List<String> errors = [];
   final _formKey = GlobalKey<FormState>();
   final _auth = FirebaseAuth.instance;
+
   @override
   Widget build(BuildContext context) {
     return Form(
