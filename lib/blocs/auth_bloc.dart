@@ -16,20 +16,15 @@ class AuthBloc{
         idToken: googleAuth.idToken,
         accessToken: googleAuth.accessToken
       );
-
-      print({"credential ": credential});
       //Firebase Sign in
       final result = await authService.signInWithCredential(credential);
-      return result;
-
     }catch(e){
-      print({"atuch bloc user ": e});
+      print({"login Google User Error ": e});
     }
   }
 
   logout(){
     authService.logout();
   }
-
 
 }

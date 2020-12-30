@@ -13,7 +13,6 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final authBloc = Provider.of<AuthBloc>(context);
-    print({"auth Bloc ": authBloc});
     return SafeArea(
       child: SizedBox(
         width: double.infinity,
@@ -49,11 +48,7 @@ class Body extends StatelessWidget {
                     ),
                     SocalCard(
                         icon: "assets/icons/google-icon.svg",
-                        press: () async {
-                          final result = await authBloc.loginGoogle();
-                          print({" result ": result });
-                          print("CLICK GOOGLE SIGN IN");
-                        }
+                        press: () => authBloc.loginGoogle()
                     ),
                     SocalCard(
                         icon: "assets/icons/twitter.svg",

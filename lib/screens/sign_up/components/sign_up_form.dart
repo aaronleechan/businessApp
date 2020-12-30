@@ -56,7 +56,6 @@ class _SignUpFormState extends State<SignUpForm> {
                 if(_errors.isEmpty){
                   try{
                     final newUser = await _auth.createUserWithEmailAndPassword(email: _email, password: _password);
-                    print(newUser);
                     if(newUser != null){
                       Navigator.pushNamed(context, HomeScreen.routeName);
                     }else{

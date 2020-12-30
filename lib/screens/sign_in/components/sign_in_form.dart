@@ -24,6 +24,21 @@ class _SignInFormState extends State<SignInForm> {
   final _formKey = GlobalKey<FormState>();
   final _auth = FirebaseAuth.instance;
 
+
+  @override
+  void initState(){
+    // TODO: implement initStat
+    var authBloc = Provider.of<AuthBloc>(context,listen: false);
+    authBloc.currentUser.listen((event) {
+      print(event);
+      print("********************************************************");
+      if(event != null){
+        Navigator.pushNamed(context, HomeScreen.routeName);
+      }
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -62,7 +77,7 @@ class _SignInFormState extends State<SignInForm> {
                 }
                 if(errors.isEmpty){
                   try{
-                    final user = await _auth..signInWithEmailAndPassword(email: email, password: password);
+                    final user = await _auth.signInWithEmailAndPassword(email: email, password: password);
                     if(user != null){
                       Navigator.pushNamed(context, HomeScreen.routeName);
                     }else{
