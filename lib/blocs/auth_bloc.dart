@@ -19,7 +19,7 @@ class AuthBloc{
       //Firebase Sign in
       final result = await authService.signInWithCredential(credential);
     }catch(e){
-      print({"login Google User Error ": e});
+      print({" Login Google User Error ": e});
     }
   }
 
