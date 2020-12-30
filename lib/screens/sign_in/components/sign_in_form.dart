@@ -30,8 +30,6 @@ class _SignInFormState extends State<SignInForm> {
     // TODO: implement initStat
     var authBloc = Provider.of<AuthBloc>(context,listen: false);
     authBloc.currentUser.listen((event) {
-      print(event);
-      print("********************************************************");
       if(event != null){
         Navigator.pushNamed(context, HomeScreen.routeName);
       }

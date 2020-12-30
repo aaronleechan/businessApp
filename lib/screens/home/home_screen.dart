@@ -29,6 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text("This is Home Screen"),centerTitle: true,
+        automaticallyImplyLeading: false,
         actions: [
           IconButton(icon: const Icon(Icons.logout), onPressed: ()  => authBloc.logout())
         ],
